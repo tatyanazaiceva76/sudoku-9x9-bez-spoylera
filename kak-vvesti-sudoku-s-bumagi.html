@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Как перенести бумажное судоку 9×9 в проверку без показа ответа: девять строк, точки вместо пустых клеток, пример и разбор ошибок ввода.">
+  <title>Как перенести судоку с бумаги и проверить повторы без ответа</title>
+  <style>
+    :root{color-scheme:light;--ink:#15212a;--muted:#4c5f68;--accent:#174f66;--line:#c7d3d6;--paper:#f4f7f5}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}a{color:var(--accent);text-underline-offset:.17em}a:focus-visible{outline:3px solid #d8863b;outline-offset:2px}.wrap{width:min(850px,calc(100% - 2rem));margin:auto}.skip{position:absolute;left:-9999px}.skip:focus{left:1rem;top:1rem;background:white;z-index:5;padding:.5rem}.site-head{background:#fff;border-bottom:1px solid var(--line);padding:.9rem 0}.brand{font-weight:800;text-decoration:none;color:var(--ink)}.brand small{display:block;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);font-size:.72rem}.hero{background:linear-gradient(125deg,#fff,#e5f1ed);padding:2.8rem 0}h1,h2{line-height:1.2;letter-spacing:-.02em}h1{font-size:clamp(2rem,5vw,3.4rem);margin:.3rem 0}h2{margin-top:2.2rem}.lead{color:#35454e;font-size:1.12rem}.button{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:750;padding:.7rem 1rem;border-radius:.6rem;margin:.6rem 0}.content{background:#fff;border:1px solid var(--line);border-radius:1rem;padding:1.5rem 2rem;margin:2rem auto}pre{overflow:auto;background:#eff4f3;padding:1rem;border-radius:.5rem;font:1rem/1.5 ui-monospace,SFMono-Regular,Consolas,monospace}.note{background:#fff6e2;border-left:4px solid #b77b1e;padding:.9rem 1.1rem;border-radius:.4rem}.site-foot{background:#17313c;color:#d6e8ea;padding:1.7rem 0;font-size:.9rem}.site-foot a{color:#bde5ec}@media(max-width:600px){.content{padding:1.2rem}}
+  </style>
+</head>
+<body>
+<a class="skip" href="#main">К содержанию</a>
+<header class="site-head"><div class="wrap"><a class="brand" href="./"><small>Zaitsev Digital</small>Судоку без спойлера</a></div></header>
+<main id="main">
+  <div class="hero"><div class="wrap"><h1>Как перенести судоку с бумаги и найти повторы без ответа</h1><p class="lead">Если решаете задачу из журнала или распечатки, можно проверить уже записанные цифры, не открывая готовое решение. Для этого перенесите сетку 9×9 по строкам, сохранив пустые клетки.</p><a class="button" href="./#checker">Открыть бесплатную проверку</a></div></div>
+  <article class="wrap content">
+    <h2>1. Перепишите клетки слева направо</h2>
+    <p>Начните с верхней строки. Каждая из девяти строк должна содержать ровно девять знаков: цифру от 1 до 9 для заполненной клетки или точку для пустой. Ноль тоже обозначает пустую клетку. Перенос строки означает переход к следующему ряду сетки.</p>
+    <p>Вот учебный пример с одной пустой клеткой в конце каждого ряда:</p>
+    <pre aria-label="Пример сетки 9 на 9">12345678.
+45678912.
+78912345.
+23456789.
+56789123.
+89123456.
+34567891.
+67891234.
+91234567.</pre>
+    <p>Такой ввод содержит девять строк по девять клеток. Проверка покажет, что повторов нет и осталось девять пустых клеток. Это пример формата, а не ответ к вашей задаче.</p>
+    <h2>2. Если сетка уже записана одной строкой</h2>
+    <p>Можно вставить все 81 знак подряд без переносов. Инструмент сам разобьёт их на девять рядов. Если копируете сетку с вертикальными чертами и пробелами между блоками, они будут пропущены. Но число <em>клеток</em> всё равно должно быть ровно 81.</p>
+    <p class="note">Для проверки своей бумажной работы переносите и напечатанные подсказки, и вписанные вами цифры. Если перенести только подсказки, инструмент не сможет заметить повтор среди ваших ходов.</p>
+    <h2>3. Разберите сообщение об ошибке</h2>
+    <p>Если указана строка, столбец или квадрат 3×3, найдите подсвеченные клетки. Например, запись <code>123456781</code> в первой строке содержит две единицы. Сверьте обе позиции с бумажной задачей: возможно, одна цифра была переписана неверно, а возможно, ошибочен ваш ход. Не заменяйте напечатанную подсказку только потому, что она попала в подсветку.</p>
+    <p>Если инструмент сообщает о неверной длине, сначала пересчитайте девять рядов и девять клеток в каждом. Даже один пропущенный знак для пустой клетки сдвигает все последующие позиции.</p>
+    <h2>Что эта проверка не обещает</h2>
+    <p>Отсутствие повторов означает только, что заполненные цифры пока не нарушают три местных правила судоку: строки, столбцы и квадраты. Оно не доказывает, что задача имеет решение, что решение единственно или что вы сохранили все исходные подсказки. Для полной сверки готового судоку используйте ответ именно к своей задаче.</p>
+    <p>Проверка выполняется в браузере; введённая сетка не отправляется сервису и не сохраняется между открытиями страницы. <a href="./#checker">Проверить свою сетку без показа решения</a>.</p>
+    <h2>Хотите попробовать на распечатке?</h2>
+    <p>Для начала есть <a href="https://disk.yandex.ru/d/IqMUEjo7yLTFCA">бесплатный PDF с четырьмя судоку A4 и ответами</a>. Если формат подходит, можно посмотреть <a href="https://market.yandex.ru/card/200-sudoku-dlya-pechati-4-urovnya-slozhnosti-i-otvety-tsifrovoy-pdf-a4-152-stranitsy/6164961844">цифровой сборник из 200 судоку на Маркете</a>. Актуальные условия покупки и получения смотрите в самой карточке.</p>
+  </article>
+</main>
+<footer class="site-foot"><div class="wrap">Zaitsev Digital · <a href="./">Инструмент проверки</a> · <a href="https://telegra.ph/Zaitsev-Digital-besplatnye-primery-i-cifrovye-instrumenty-po-zadache-10-21">Другие бесплатные примеры</a></div></footer>
+</body>
+</html>
