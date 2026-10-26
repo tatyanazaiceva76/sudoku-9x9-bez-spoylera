@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Проверьте заполненное судоку 9×9 без просмотра ответа: повторы в строках, столбцах и блоках 3×3. Бесплатно, прямо в браузере, без отправки сетки.">
+  <title>Проверить судоку 9×9 без ответа — локальная проверка сетки</title>
+  <style>
+    :root{color-scheme:light;--ink:#15212a;--muted:#4c5f68;--line:#c7d3d6;--accent:#174f66;--paper:#f4f7f5;--bad:#a12b27;--good:#1d6946}
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}a{color:var(--accent);text-underline-offset:.17em}a:focus-visible,button:focus-visible,textarea:focus-visible{outline:3px solid #d8863b;outline-offset:2px}.wrap{width:min(1040px,calc(100% - 2rem));margin:auto}.skip{position:absolute;left:-9999px}.skip:focus{left:1rem;top:1rem;background:white;z-index:5;padding:.5rem}.site-head{background:#fff;border-bottom:1px solid var(--line)}.head-row{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.9rem 0}.brand{font-weight:800;text-decoration:none;color:var(--ink)}.brand small{display:block;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);font-size:.72rem}.head-row nav{display:flex;flex-wrap:wrap;gap:.8rem;font-size:.9rem}.hero{background:linear-gradient(125deg,#fff,#e5f1ed);padding:3.5rem 0 3rem}.eyebrow{margin:0 0 .6rem;font-size:.8rem;color:var(--accent);font-weight:800;text-transform:uppercase;letter-spacing:.07em}h1,h2,h3{line-height:1.15;letter-spacing:-.025em}h1{max-width:800px;font-size:clamp(2.25rem,5vw,4rem);margin:.25rem 0 1rem}h2{font-size:clamp(1.7rem,3vw,2.4rem)}.lead{max-width:740px;color:#35454e;font-size:1.14rem}.button{display:inline-flex;align-items:center;justify-content:center;min-height:44px;border:0;border-radius:.6rem;padding:.65rem 1rem;background:var(--accent);color:#fff;text-decoration:none;font:inherit;font-weight:750;cursor:pointer}.button.secondary{background:white;border:1px solid var(--accent);color:var(--accent)}.actions{display:flex;flex-wrap:wrap;gap:.6rem;margin:1.2rem 0}.grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(270px,.8fr);gap:1.5rem}.panel{background:#fff;border:1px solid var(--line);border-radius:1rem;padding:1.5rem;box-shadow:0 8px 24px #17232b0b}main section{padding:2.5rem 0}.checker-label{display:block;font-weight:800;margin:0 0 .5rem}textarea{width:100%;min-height:13rem;padding:1rem;border:1px solid #839ba3;border-radius:.55rem;background:#fff;color:var(--ink);font:1rem/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;resize:vertical}.small{color:var(--muted);font-size:.89rem}.result{margin-top:1.2rem}.result p{font-weight:700}.result[data-kind=error] p{color:var(--bad)}.result[data-kind=complete] p{color:var(--good)}.board{border-collapse:collapse;background:#fff;margin:.8rem 0}.board td{width:2.5rem;height:2.5rem;border:1px solid #91a6ac;text-align:center;font:700 1.1rem ui-monospace,SFMono-Regular,Consolas,monospace}.board tr:nth-child(3n) td{border-bottom:3px solid var(--ink)}.board tr:first-child td{border-top:3px solid var(--ink)}.board td:nth-child(3n){border-right:3px solid var(--ink)}.board td:first-child{border-left:3px solid var(--ink)}.board td.conflict{background:#ffe0da;color:#871c19}.callout{background:#fff6e2;border-left:4px solid #b77b1e;padding:1rem 1.2rem;border-radius:.4rem}.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.site-foot{background:#17313c;color:#d6e8ea;padding:1.8rem 0;font-size:.9rem}.site-foot a{color:#bde5ec}@media(max-width:740px){.head-row{align-items:flex-start;flex-direction:column}.grid,.two{grid-template-columns:1fr}.board td{width:2rem;height:2rem}}
+  </style>
+</head>
+<body>
+<a class="skip" href="#main">К содержанию</a>
+<header class="site-head"><div class="wrap head-row"><a class="brand" href="./"><small>Zaitsev Digital</small>Судоку без спойлера</a><nav aria-label="Разделы"><a href="#checker">Проверка</a><a href="#how">Как работает</a><a href="#print">Для печати</a></nav></div></header>
+<main id="main">
+  <div class="hero"><div class="wrap"><p class="eyebrow">Бесплатный инструмент · 9×9</p><h1>Проверьте судоку, не открывая ответ</h1><p class="lead">Вставьте девять строк по девять клеток. Страница найдёт повторяющиеся цифры в строках, столбцах и квадратах 3×3. Проверка работает в вашем браузере: сетка никуда не отправляется.</p><div class="actions"><a class="button" href="#checker">Проверить сетку</a><a class="button secondary" href="https://disk.yandex.ru/d/IqMUEjo7yLTFCA">Четыре бесплатных судоку A4</a></div></div></div>
+  <section id="checker"><div class="wrap grid"><div class="panel"><h2>Введите сетку</h2><label class="checker-label" for="puzzle">9 строк по 9 цифр</label><textarea id="puzzle" spellcheck="false" placeholder="123456789&#10;456789123&#10;789123456&#10;..." aria-describedby="format-help"></textarea><p id="format-help" class="small">Цифры 1–9 — заполненные клетки; точка или 0 — пустая клетка. Пробелы и вертикальные черты между клетками допустимы. Каждая строка после удаления разделителей должна содержать ровно девять клеток.</p><div class="actions"><button id="check" class="button" type="button">Найти повторы</button><button id="example" class="button secondary" type="button">Пример с ошибкой</button><button id="clear" class="button secondary" type="button">Очистить</button></div><div id="result" class="result" role="status" aria-live="polite"><p>Результат появится после проверки.</p></div></div><aside class="panel"><h2>Что именно проверяется</h2><ol><li>Каждая из девяти строк.</li><li>Каждый из девяти столбцов.</li><li>Каждый квадрат 3×3.</li></ol><div class="callout"><strong>Важная граница:</strong> даже сетка без повторов может не решать вашу задачу. Здесь не сравниваются исходные подсказки, не проверяются единственность решения и логика ходов. Для полной сверки используйте ответ к своей задаче.</div><p class="small">Клетки с повторами подсвечиваются после проверки. Страница не хранит введённую сетку между открытиями.</p></aside></div></section>
+  <section id="how"><div class="wrap"><h2>Если нашёлся повтор</h2><div class="two"><div class="panel"><h3>Проверьте одну цифру за раз</h3><p>Смотрите на подсвеченные клетки и указанные строки, столбцы или квадраты. Повтор в одной строке иногда даёт ещё и повтор в квадрате — это один ввод, обнаруженный двумя правилами.</p></div><div class="panel"><h3>Не исправляйте исходные числа</h3><p>Перед заменой цифры найдите её в исходной задаче. Если это напечатанная подсказка, вернитесь к своим ходам; если это ваш ответ, проверьте кандидатов для этой клетки.</p></div></div><p>Нужна ручная проверка на бумаге? <a href="https://telegra.ph/Kak-proverit-reshyonnoe-sudoku-99-tri-prohoda-i-primer-oshibki-10-21">Три прохода по решённому судоку и пример ошибки</a>.</p></div></section>
+  <section id="print"><div class="wrap"><h2>Хотите ещё задачи для печати?</h2><p>Начните с <a href="https://disk.yandex.ru/d/IqMUEjo7yLTFCA">четырёх бесплатных судоку A4 с ответами</a>. Если такой формат подходит, на Маркете есть <a href="https://market.yandex.ru/card/200-sudoku-dlya-pechati-4-urovnya-slozhnosti-i-otvety-tsifrovoy-pdf-a4-152-stranitsy/6164961844">цифровой сборник из 200 судоку четырёх уровней</a>. Цену, наличие и способ получения проверяйте в карточке перед покупкой.</p><div class="actions"><a class="button" href="https://market.yandex.ru/card/200-sudoku-dlya-pechati-4-urovnya-slozhnosti-i-otvety-tsifrovoy-pdf-a4-152-stranitsy/6164961844">Открыть сборник на Маркете</a><a class="button secondary" href="https://telegra.ph/Sudoku-dlya-pechati-1000-zadach-ili-krupnyj-shrift--chto-vybrat-10-20">Сравнить форматы сборников</a></div><p class="small">Этот независимый инструмент проверяет только правила заполнения сетки. Он не является частью Маркета и не показывает правильное решение.</p></div></section>
+</main>
+<footer class="site-foot"><div class="wrap">Zaitsev Digital · Бесплатная локальная проверка судоку · <a href="https://telegra.ph/Zaitsev-Digital-besplatnye-primery-i-cifrovye-instrumenty-po-zadache-10-21">Другие бесплатные примеры</a></div></footer>
+<script>
+(() => {
+  'use strict';
+  const input = document.getElementById('puzzle');
+  const result = document.getElementById('result');
+  function paragraph(text, kind) {
+    result.replaceChildren(); result.dataset.kind = kind || '';
+    const p = document.createElement('p'); p.textContent = text; result.append(p);
+  }
+  function parse(text) {
+    const lines = text.trim().split(/\r\n|\n|\r/).map(line => line.replace(/[\s|]/g, ''));
+    if (lines.length !== 9) throw new Error('Нужно ровно девять строк. Сейчас: ' + lines.length + '.');
+    return lines.map((line, index) => {
+      if (line.length !== 9) throw new Error('В строке ' + (index + 1) + ' должно быть девять клеток. Сейчас: ' + line.length + '.');
+      if (/[^0-9.]/.test(line)) throw new Error('В строке ' + (index + 1) + ' есть недопустимый символ. Используйте цифры, 0 или точки.');
+      return [...line].map(value => value === '0' || value === '.' ? 0 : Number(value));
+    });
+  }
+  function checkGroup(grid, positions, label, conflicts, messages) {
+    const seen = new Map();
+    for (const [row, col] of positions) {
+      const value = grid[row][col]; if (!value) continue;
+      const cells = seen.get(value) || []; cells.push([row, col]); seen.set(value, cells);
+    }
+    for (const [value, cells] of seen) {
+      if (cells.length < 2) continue;
+      cells.forEach(([row, col]) => conflicts.add(row + '-' + col));
+      messages.push(label + ': цифра ' + value + ' повторяется.');
+    }
+  }
+  function board(grid, conflicts) {
+    const table = document.createElement('table'); table.className = 'board';
+    table.setAttribute('aria-label', 'Проверенная сетка судоку');
+    const body = table.createTBody();
+    grid.forEach((values, row) => {
+      const tr = body.insertRow();
+      values.forEach((value, col) => {
+        const td = tr.insertCell(); td.textContent = value ? String(value) : '·';
+        if (conflicts.has(row + '-' + col)) td.className = 'conflict';
+        td.setAttribute('aria-label', 'Строка ' + (row + 1) + ', столбец ' + (col + 1) + ': ' + (value || 'пусто') + (td.className ? ', повтор' : ''));
+      });
+    });
+    return table;
+  }
+  document.getElementById('check').addEventListener('click', () => {
+    if (input.value.length > 1000) { paragraph('Сетка слишком длинная. Вставьте только девять строк судоку.', 'error'); return; }
+    let grid; try { grid = parse(input.value); } catch (error) { paragraph(error.message, 'error'); return; }
+    const conflicts = new Set(), messages = [];
+    for (let i = 0; i < 9; i++) {
+      checkGroup(grid, Array.from({length:9}, (_, col) => [i,col]), 'Строка ' + (i + 1), conflicts, messages);
+      checkGroup(grid, Array.from({length:9}, (_, row) => [row,i]), 'Столбец ' + (i + 1), conflicts, messages);
+    }
+    for (let row = 0; row < 9; row += 3) for (let col = 0; col < 9; col += 3) {
+      const positions = []; for (let r = row; r < row + 3; r++) for (let c = col; c < col + 3; c++) positions.push([r,c]);
+      checkGroup(grid, positions, 'Квадрат ' + (Math.floor(row/3) + 1) + '×' + (Math.floor(col/3) + 1), conflicts, messages);
+    }
+    const blanks = grid.flat().filter(value => !value).length;
+    const kind = messages.length ? 'error' : blanks ? 'incomplete' : 'complete';
+    paragraph(messages.length ? 'Найдены повторы: ' + messages.length + '. Подсвечено клеток: ' + conflicts.size + '.' : blanks ? 'Повторов пока нет. Пустых клеток: ' + blanks + '. Решение ещё не завершено.' : 'Повторов нет, сетка заполнена. Сверьте её с исходными подсказками и ответом к задаче.', kind);
+    result.append(board(grid, conflicts));
+    if (messages.length) {
+      const list = document.createElement('ul');
+      messages.forEach(message => { const li = document.createElement('li'); li.textContent = message; list.append(li); });
+      result.append(list);
+    }
+  });
+  document.getElementById('example').addEventListener('click', () => {
+    const grid = Array.from({length:9}, (_, row) => Array.from({length:9}, (_, col) => String((row*3+Math.floor(row/3)+col)%9+1)).join(''));
+    grid[0] = '113456789'; input.value = grid.join('\n'); document.getElementById('check').click();
+  });
+  document.getElementById('clear').addEventListener('click', () => { input.value = ''; paragraph('Сетка очищена. Результат появится после проверки.'); input.focus(); });
+})();
+</script>
+</body>
+</html>
